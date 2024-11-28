@@ -1,0 +1,59 @@
+﻿@using MCF_TestWeb.ViewModels;
+@model List<BpkbViewModel>
+
+<div class="card shadow border-0 my-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            BPKB List
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6"></div>
+            <div class="col-6 text-end">
+                <a asp-action="Add" id="btnCreate" class="btn btn-outline-primary"><i class="bi bi-plus-square">Create</i></a>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Agreement Number</th>
+                    <th>Branch ID</th>
+                    <th>BPKB No</th>
+                    <th>BPKB date In</th>
+                    <th>bpkb date</th>
+                    <th>Faktur No</th>
+                    <th>Faktur date In</th>
+                    <td>Police no</td>
+                    <td>Location Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var data in Model)
+                {
+                    <tr>
+                        <td>@data.agreement_number</td>
+                        <td>@data.branch_id</td>
+                        <td>@data.bpkb_no</td>
+                        <td>@data.bpkb_date_in.ToString("dd-MM-yyyy")</td>
+                        <td>@data.bpkb_date.ToString("dd-MM-yyyy")</td>
+                        <td>@data.faktur_no</td>
+                        <td>@data.faktur_date.ToString("dd-MM-yyyy")</td>
+                        <td>@data.police_no</td>
+                        <td>@data.location_name</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@data.agreement_number" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@data.agreement_number" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@using MCF_TestWeb.ViewModels;
+@model LocationViewModel
+
+<form asp-action="Save">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-center">Update Location</h1>
+        <hr />
+        <div class="row">
+            <input type="hidden" name="Type" value="Edit" />
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Location ID</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="location_id" class="form-control" />
+                <span asp-validation-for="location_id" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Location Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="location_name" class="form-control" />
+                <span asp-validation-for="location_name" class="text-danger"></span>
+            </div>
+            
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Back to list</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Update" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

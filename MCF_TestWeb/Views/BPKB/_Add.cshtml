@@ -1,0 +1,93 @@
+﻿@using MCF_TestWeb.ViewModels;
+@model BpkbViewModel
+
+<form asp-action="Save">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-center">Create BPKB</h1>
+        <hr />
+        <div class="row">
+            <input type="hidden" name="Type" value="Add" />
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Aggrement Number</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="agreement_number" class="form-control" />
+                <span asp-validation-for="agreement_number" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Branch ID</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="branch_id" class="form-control" />
+                <span asp-validation-for="branch_id" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">No BPKB</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="bpkb_no" class="form-control" />
+                <span asp-validation-for="bpkb_no" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Tanggal BPKB In</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="bpkb_date_in" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="bpkb_date_in" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;" >Tanggal BPKB</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="bpkb_date" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="bpkb_date" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">No Faktur</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="faktur_no" class="form-control"  />
+                <span asp-validation-for="faktur_no" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Tanggal Faktur</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="faktur_date" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="faktur_date" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Nomor Polisi</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="police_no" class="form-control" />
+                <span asp-validation-for="police_no" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Lokasi Penyimpanan</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select id="CurrencyCode" class="form-select" aria-describedby="bpkb" asp-for="location_id" value="@Model.location_id">
+                    <option selected value="">Choose...</option>
+                    @foreach (var curr in Model.locationList)
+                    {
+                        <option value="@curr.location_id">@curr.location_name</option>
+                    }
+                </select>
+                <span asp-validation-for="location_id" class="text-danger"></span>
+                <div id="currencyHelp" class="form-text">Pick Location.</div>
+            </div>
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Back to list</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Create" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
