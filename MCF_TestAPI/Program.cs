@@ -8,8 +8,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
+
+var connectionString = builder.Configuration.GetValue<string>("DefaultConnection");
+
 builder.Services.AddDbContext<MCF_TestAPI_DbContext>(x => {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    x.UseSqlServer(connectionString);
 });
 // Add services to the container.
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
